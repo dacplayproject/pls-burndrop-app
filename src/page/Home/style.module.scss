@@ -1,0 +1,141 @@
+@import "../../style/index";
+
+
+.spaceSection {
+  padding-bottom: 110px;
+  background: #2a2a2a;
+  .sectionTitle {
+    h1 {
+      margin-top: 40px;
+      font-weight: 700;
+      font-size: 36px;
+      letter-spacing: .5px;
+      color: #fff;
+      z-index: 22;
+    }
+    p {
+      font-size: 18px;
+      letter-spacing: .4px;
+      color: #fff;
+      opacity: 1;
+      max-width: 440px;
+      z-index: 22;
+      margin-bottom: 33px;
+      margin-top: 1rem;
+      line-height: 1.2;
+    }
+  }
+}
+
+.tokenItem{
+  background: #fff;
+  border-radius: 8px 0 0 0;
+  padding: 24px 33px 40px;
+  .tokenItemContainer{
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    .tokenItemLogoContainer{
+      img{
+        width: 45px;
+      }
+
+    }
+    p{
+      margin-bottom: 0;
+      font-weight: 700;
+      font-size: 18px;
+      color: #2b2b37;
+      opacity: 1;
+      margin-left: 20px;
+
+    }
+  }
+  .tokenInput{
+    label{
+      font-size: 13px;
+      line-height: normal;
+      letter-spacing: .5px;
+      color: #a4a3aa;
+      opacity: 1;
+      margin-bottom: 18px;
+      input{
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(43,43,55,.2);
+        color: #2b2b37;
+        font-weight: 700;
+        font-size: 36px;
+        border-radius: 0;
+        width: 100%;
+        margin-bottom: 0;
+        padding: 10px 0;
+        outline: none;
+      }
+    }
+  }
+}
+
+
+.tokenGet{
+  background: hsla(0,0%,100%,.8);
+  border-radius: 0 8px 0 0;
+  .tokenInput{
+    label{
+      input{
+        border-bottom: 1px solid transparent;
+      }
+    }
+
+
+  }
+}
+
+.btnColor{
+  border-color: #5383ec;
+  background-color: #5383ec;
+}
+
+.swapBtn{
+  border-color: #5383ec;
+  background-color: #5383ec;
+  border-radius: 0 0 8px 8px;
+  width: 100%;
+  height: 44px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+}
+
+@media (max-width: 575.98px) {
+
+  .spaceSection {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .sectionTitle {
+      h1 {
+        font-size: 22px;
+      }
+    }
+  }
+
+  .tokenItem{
+    background: #fff;
+    border-radius: 8px 8px 0 0;
+  }
+
+
+  .tokenGet{
+    background: hsla(0,0%,100%,.8);
+    border-radius: 0 0 0 0;
+    .tokenInput{
+      label{
+        input{
+          border-bottom: 1px solid transparent;
+        }
+      }
+    }
+  }
+}
