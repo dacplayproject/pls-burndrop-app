@@ -113,7 +113,7 @@ class Home extends Component {
 
         // plsContract.methods.transfer("0x9c9640b2158376b65dACa5fD9565e7fE5f96Fa4f", transferNum.toString(), '0x0000000000000000000000000000000000000000000000000000000000000001').estimateGas({from: account})
         //     .then(function (gasAmount) {
-        this.txTimer = plsContract.methods.transfer(CONFIG.CONNECTOR_ADDRESS, transferNum.toString(), '0x0000000000000000000000000000000000000000000000000000000000000001').send({from: account})
+        this.txTimer = plsContract.methods.transfer(CONFIG.EXCHANGE_ADDRESS, transferNum.toString(), '0x0000000000000000000000000000000000000000000000000000000000000001').send({from: account})
             .on('transactionHash', (hash) => {
                 this.setState({
                     status: 'pending',
