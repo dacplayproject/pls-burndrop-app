@@ -8,6 +8,7 @@ import plsTokenABI from './PlsTokenABI'
 import bancorConverter from './BancorConverterABI'
 import CONFIG from '../../config'
 
+
 import {withTranslation} from "react-i18next";
 import Web3 from 'web3';
 import debounce from 'lodash/debounce'
@@ -30,7 +31,6 @@ class Home extends Component {
     }
 
     componentDidMount() {
-
         if (typeof window.web3 !== 'undefined') {
             this.connect()
         } else {
@@ -91,9 +91,8 @@ class Home extends Component {
             let bancorConverterContract = new web3js.eth.Contract(bancorConverter, CONFIG.BANCORCONVERTER_ADDRESS);
             // console.log(bancorConverterContract)
             const _depositAmount = web3js.utils.toBN(depositAmount).mul(web3js.utils.toBN(1000000000000000000)).toString()
-            debugger
             bancorConverterContract.methods.getSaleReturn(CONFIG.RING_ADDRESS, _depositAmount).call({from: account}).then((result) => {
-                const _finalAmout = web3js.utils.toBN(result).div(web3js.utils.toBN(1000000000000000000))
+                const _finalAmout = web3js.utils.toBN(result).div(web3js.utils.toBN(1000000000000000000)).mul(web3js.utils.toBN(9)).div(web3js.utils.toBN(10))
                 this.setState({
                     finalAmount: _finalAmout
                 })
