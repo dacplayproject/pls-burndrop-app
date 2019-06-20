@@ -92,7 +92,7 @@ class Home extends Component {
             // console.log(bancorConverterContract)
             const _depositAmount = web3js.utils.toBN(depositAmount).mul(web3js.utils.toBN(1000000000000000000)).toString()
             bancorConverterContract.methods.getSaleReturn(CONFIG.RING_ADDRESS, _depositAmount).call({from: account}).then((result) => {
-                const _finalAmout = web3js.utils.toBN(result).div(web3js.utils.toBN(1000000000000000000)).mul(web3js.utils.toBN(9)).div(web3js.utils.toBN(10))
+                const _finalAmout = web3js.utils.toBN(result).div(web3js.utils.toBN(1000000000000000000)).mul(web3js.utils.toBN(99)).div(web3js.utils.toBN(100))
                 this.setState({
                     finalAmount: _finalAmout
                 })
