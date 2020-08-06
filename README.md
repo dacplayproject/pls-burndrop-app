@@ -2,6 +2,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+```javascript
+// constructor
+"200000","100000","1596690000","1604638800","0x9469d013805bffb7d3debe5e7839237e535ec483","0xe43ac1714F7394173b15E7CfF31A63d523Ce4fB9"
+```
+
+#### remix
+[https://remix.ethereum.org/#optimize=true&evmVersion=null&version=soljson-v0.6.6+commit.6c089d02.js](https://remix.ethereum.org/#optimize=true&evmVersion=null&version=soljson-v0.6.6+commit.6c089d02.js "Remix")
+
 In the project directory, you can run:
 
 ### `npm start`
