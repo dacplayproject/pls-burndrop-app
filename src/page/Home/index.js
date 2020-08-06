@@ -5,7 +5,7 @@ import styles from './style.module.scss'
 import ring from './img/ring.png'
 import pls from './img/pls.png'
 import plsTokenABI from './PlsTokenABI'
-import bancorConverter from './BancorConverterABI'
+import PlsBurndropABI from './PlsBurndropABI'
 import CONFIG from '../../config'
 
 
@@ -88,11 +88,11 @@ class Home extends Component {
             const {account} = this.state
             let web3js = new Web3(window.ethereum || window.web3.currentProvider);
 
-            let bancorConverterContract = new web3js.eth.Contract(bancorConverter, CONFIG.BANCORCONVERTER_ADDRESS);
-            // console.log(bancorConverterContract)
+            let burndropContract = new web3js.eth.Contract(PlsBurndropABI, CONFIG.EXCHANGE_ADDRESS);
+            // console.log(burndropContract)
             const _depositAmount = web3js.utils.toBN(depositAmount).mul(web3js.utils.toBN(1000000000000000000)).toString()
-            bancorConverterContract.methods.getSaleReturn(CONFIG.RING_ADDRESS, _depositAmount).call({from: account}).then((result) => {
-                const _finalAmout = web3js.utils.toBN(result).div(web3js.utils.toBN(1000000000000000000)).mul(web3js.utils.toBN(99)).div(web3js.utils.toBN(100))
+            burndropContract.methods.convertFor(_depositAmount).call({from: account}).then((result) => {
+                const _finalAmout = web3js.utils.toBN(result).div(web3js.utils.toBN(1000000000000000000))
                 this.setState({
                     finalAmount: _finalAmout
                 })
@@ -109,10 +109,9 @@ class Home extends Component {
         let plsContract = new web3js.eth.Contract(plsTokenABI, CONFIG.PLSTOKEN_ADDRESS);
         let transferNum = web3js.utils.toBN(sellAmount).mul(web3js.utils.toBN(1000000000000000000))
 
-
-        // plsContract.methods.transfer("0x9c9640b2158376b65dACa5fD9565e7fE5f96Fa4f", transferNum.toString(), '0x0000000000000000000000000000000000000000000000000000000000000001').estimateGas({from: account})
+        // plsContract.methods.transfer("", transferNum.toString(), '0x0000000000000000000000000000000000000000000000000000000000000001').estimateGas({from: account})
         //     .then(function (gasAmount) {
-        this.txTimer = plsContract.methods.transfer(CONFIG.EXCHANGE_ADDRESS, transferNum.toString(), '0x0000000000000000000000000000000000000000000000000000000000000001').send({from: account})
+        this.txTimer = plsContract.methods.transfer(CONFIG.EXCHANGE_ADDRESS, transferNum.toString(), '0x0000000000000000000000000000000000000000000000000000000000000000').send({from: account})
             .on('transactionHash', (hash) => {
                 this.setState({
                     status: 'pending',
@@ -174,8 +173,8 @@ class Home extends Component {
                     <a className="external" id="walletanddapp"></a>
                     <Row className={['justify-content-md-center']}>
                         <Col lg={9} className={styles.sectionTitle}>
-                            <h1>DAC PLAY SWAP</h1>
-                            <p>Swap your DAC PLAY Token to Evolution Land Global Token</p>
+                            <h1>DAC PLAY BURNDROP</h1>
+                            <p>You can choose to get RING token by burning PLS token.</p>
                         </Col>
 
                         {status === '' ? <Col lg={9}>
@@ -223,7 +222,7 @@ class Home extends Component {
                                     disabled={sellAmount ? '' : 'disabled'} onClick={() => {
                                 this.startSwap()
                             }}>
-                                Swap
+                                Start
                             </Button>
                         </Col> : null}
 
