@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Container, Row, Col, Image, Button, Card} from 'react-bootstrap'
+import {Container, Row, Col, Button, Card} from 'react-bootstrap'
 import styles from './style.module.scss'
 
 import ring from './img/ring.png'
@@ -67,7 +67,6 @@ class Home extends Component {
                         let plsContract = new web3js.eth.Contract(plsTokenABI, CONFIG.PLSTOKEN_ADDRESS);
 
                         plsContract.methods.balanceOf(account[0]).call({from: account[0]}).then((result) => {
-                            // console.log(11111,err,result)
                             const _plsBalance = web3js.utils.toBN(result).div(web3js.utils.toBN(1000000000000000000))
                             this.setState({
                                 plsBalance: _plsBalance.toString()
@@ -89,7 +88,7 @@ class Home extends Component {
             let web3js = new Web3(window.ethereum || window.web3.currentProvider);
 
             let burndropContract = new web3js.eth.Contract(PlsBurndropABI, CONFIG.EXCHANGE_ADDRESS);
-            // console.log(burndropContract)
+
             const _depositAmount = web3js.utils.toBN(depositAmount).mul(web3js.utils.toBN(1000000000000000000)).toString()
             burndropContract.methods.convertFor(_depositAmount).call({from: account}).then((result) => {
                 const _finalAmout = web3js.utils.toBN(result).div(web3js.utils.toBN(1000000000000000000))
